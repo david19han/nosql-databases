@@ -15,10 +15,13 @@ def article_vote(redis, user, article):
             redis.hincrby(name=article, key='votes', amount=1)
 
 def article_switch_vote(redis, user, from_article, to_article):
-    redis.zincrby(name='score:', value=from_article, amount=-1*VOTE_SCORE)
-    redis.hincrby(name=from_article, key='votes', amount=-1)
-    redis.zincrby(name='score:', value=to_article, amount=VOTE_SCORE)
-    redis.hincrby(name=to_article, key='votes', amount=1)
+    from_id = from_article.split(':')[-1]
+    to_id = to_article.split(':')[-1]
+    if redis.smove('voted:'+from_id,'voted:'+to_id,user):
+        redis.zincrby(name='score:', value=from_article, amount=-1*VOTE_SCORE)
+        redis.hincrby(name=from_article, key='votes', amount=-1)
+        redis.zincrby(name='score:', value=to_article, amount=VOTE_SCORE)
+        redis.hincrby(name=to_article, key='votes', amount=1)
 
 
 
