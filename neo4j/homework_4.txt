@@ -1,5 +1,5 @@
 // The scenario you have used for your schema is:
-Family Tree of Dwarves from the Lord of the Ring's "The Hobbit"
+//Family Tree of Dwarves from the Lord of the Ring's "The Hobbit"
 
 // This is an example. Your own commands should *not* be commented out so we can pipe the file into the cypher-shell.
 // If you'd like to test your commands, you can run 'cat homework_4.txt | cypher-shell -u neo4j -p test' from
