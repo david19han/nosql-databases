@@ -21,19 +21,19 @@ create (a:Dwarf {name: 'Bofur'});
 create (a:Dwarf {name: 'Bombur'});
 create (a:Dwarf {name: 'Durin I'});
 match (a:Dwarf {name: 'Durin I'}), (b:Dwarf {name: 'Thorin'})
-create (a)-[r1: descendant]->(b);
+create (a)-[r1: descendant {by: 'Dain I'}]->(b);
 match (a:Dwarf {name: 'Durin I'}), (b:Dwarf {name: 'Fili'})
-create (a)-[r1: descendant]->(b);
+create (a)-[r1: descendant {by: 'Dain I'}]->(b);
 match (a:Dwarf {name: 'Durin I'}), (b:Dwarf {name: 'Kili'})
-create (a)-[r1: descendant]->(b);
+create (a)-[r1: descendant {by: 'Dain I'}]->(b);
 match (a:Dwarf {name: 'Durin I'}), (b:Dwarf {name: 'Balin'})
-create (a)-[r1: descendant]->(b);
+create (a)-[r1: descendant {by: 'Borin'}]->(b);
 match (a:Dwarf {name: 'Durin I'}), (b:Dwarf {name: 'Dwalin'})
-create (a)-[r1: descendant]->(b);
+create (a)-[r1: descendant  {by: 'Borin'}]->(b);
 match (a:Dwarf {name: 'Durin I'}), (b:Dwarf {name: 'Oin'})
-create (a)-[r1: descendant]->(b);
+create (a)-[r1: descendant  {by: 'Borin'}]->(b);
 match (a:Dwarf {name: 'Durin I'}), (b:Dwarf {name: 'Gloin'})
-create (a)-[r1: descendant]->(b);
+create (a)-[r1: descendant  {by: 'Borin'}]->(b);
 match (a:Dwarf {name: 'Thorin'}), (b:Dwarf {name: 'Fili'})
 create (a)-[r1: uncle]->(b), (b)-[r2: nephew]->(a);
 match (a:Dwarf {name: 'Thorin'}), (b:Dwarf {name: 'Kili'})
