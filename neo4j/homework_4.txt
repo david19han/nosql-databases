@@ -1,7 +1,72 @@
 // The scenario you have used for your schema is:
-
+Family Tree of Dwarves from the Lord of the Ring's "The Hobbit"
 
 // This is an example. Your own commands should *not* be commented out so we can pipe the file into the cypher-shell.
 // If you'd like to test your commands, you can run 'cat homework_4.txt | cypher-shell -u neo4j -p test' from
 // the vagrant box command line. Make sure neo4j is running first.
 // CREATE (a:person { name: 't' });
+
+create (a:Dwarf {name: 'Thorin'});
+create (a:Dwarf {name: 'Fili'});
+create (a:Dwarf {name: 'Kili'});
+create (a:Dwarf {name: 'Balin'});
+create (a:Dwarf {name: 'Dwalin'});
+create (a:Dwarf {name: 'Oin'});
+create (a:Dwarf {name: 'Gloin'});
+create (a:Dwarf {name: 'Dori'});
+create (a:Dwarf {name: 'Nori'});
+create (a:Dwarf {name: 'Ori'});
+create (a:Dwarf {name: 'Bifur'});
+create (a:Dwarf {name: 'Bofur'});
+create (a:Dwarf {name: 'Bombur'});
+create (a:Dwarf {name: 'Durin I'});
+match (a:Dwarf {name: 'Durin I'}), (b:Dwarf {name: 'Thorin'})
+create (a)-[r1: descendant]->(b);
+match (a:Dwarf {name: 'Durin I'}), (b:Dwarf {name: 'Fili'})
+create (a)-[r1: descendant]->(b);
+match (a:Dwarf {name: 'Durin I'}), (b:Dwarf {name: 'Kili'})
+create (a)-[r1: descendant]->(b);
+match (a:Dwarf {name: 'Durin I'}), (b:Dwarf {name: 'Balin'})
+create (a)-[r1: descendant]->(b);
+match (a:Dwarf {name: 'Durin I'}), (b:Dwarf {name: 'Dwalin'})
+create (a)-[r1: descendant]->(b);
+match (a:Dwarf {name: 'Durin I'}), (b:Dwarf {name: 'Oin'})
+create (a)-[r1: descendant]->(b);
+match (a:Dwarf {name: 'Durin I'}), (b:Dwarf {name: 'Gloin'})
+create (a)-[r1: descendant]->(b);
+match (a:Dwarf {name: 'Thorin'}), (b:Dwarf {name: 'Fili'})
+create (a)-[r1: uncle]->(b), (b)-[r2: nephew]->(a);
+match (a:Dwarf {name: 'Thorin'}), (b:Dwarf {name: 'Kili'})
+create (a)-[r1: uncle]->(b), (b)-[r2: nephew]->(a);
+match (a:Dwarf {name: 'Thorin'}), (b:Dwarf {name: 'Balin'})
+create (a)-[r1: cousin]->(b), (b)-[r2: cousin]->(a);
+match (a:Dwarf {name: 'Thorin'}), (b:Dwarf {name: 'Dwalin'})
+create (a)-[r1: cousin]->(b), (b)-[r2: cousin]->(a);
+match (a:Dwarf {name: 'Thorin'}), (b:Dwarf {name: 'Oin'})
+create (a)-[r1: cousin]->(b), (b)-[r2: cousin]->(a);
+match (a:Dwarf {name: 'Thorin'}), (b:Dwarf {name: 'Gloin'})
+create (a)-[r1: cousin]->(b), (b)-[r2: cousin]->(a);
+match (a:Dwarf {name: 'Fili'}), (b:Dwarf {name: 'Kili'})
+create (a)-[r1: brother]->(b), (b)-[r2: brother]->(a);
+match (a:Dwarf {name: 'Oin'}), (b:Dwarf {name: 'Gloin'})
+create (a)-[r1: brother]->(b), (b)-[r2: brother]->(a);
+match (a:Dwarf {name: 'Dori'}), (b:Dwarf {name: 'Nori'})
+create (a)-[r1: brother]->(b), (b)-[r2: brother]->(a);
+match (a:Dwarf {name: 'Dori'}), (b:Dwarf {name: 'Ori'})
+create (a)-[r1: brother]->(b), (b)-[r2: brother]->(a);
+match (a:Dwarf {name: 'Nori'}), (b:Dwarf {name: 'Ori'})
+create (a)-[r1: brother]->(b), (b)-[r2: brother]->(a);
+match (a:Dwarf {name: 'Bofur'}), (b:Dwarf {name: 'Bombur'})
+create (a)-[r1: brother]->(b), (b)-[r2: brother]->(a);
+match (a:Dwarf {name: 'Bifur'}), (b:Dwarf {name: 'Bofur'})
+create (a)-[r1: cousin]->(b), (b)-[r2: cousin]->(a);
+match (a:Dwarf {name: 'Bifur'}), (b:Dwarf {name: 'Bombur'})
+create (a)-[r1: cousin]->(b), (b)-[r2: cousin]->(a);
+
+//All of Thorin's cousins
+match (:Dwarf {name: 'Thorin'})-[r: cousin]->(b)
+return type(r), b.name;
+
+//All descendants of Durin's line
+match (:Dwarf {name: 'Durin I'})-[r: descendant]->(b)
+return type(r), b.name;
